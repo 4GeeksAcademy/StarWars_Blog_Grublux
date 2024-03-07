@@ -1,3 +1,21 @@
 /* 
     General Styles
 */
+
+.headerImg {
+    max-width: 199px;
+}
+
+.myCard   {
+    max-width: 18rem; 
+    background-color: rgb(43, 43, 43);
+}
+
+.myCard:hover {
+    cursor: pointer;
+    box-shadow: 0 7px 19px rgba(237, 230, 243, 0.4);
+}
+
+.myCardText {
+    background-color: rgb(43, 43, 43);
+}

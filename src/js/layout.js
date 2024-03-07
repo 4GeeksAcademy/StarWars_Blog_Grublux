@@ -6,7 +6,9 @@ import { Home } from "./views/home";
 import { Demo } from "./views/demo";
 import { Single } from "./views/single";
 import injectContext from "./store/appContext";
+import { Details } from "./views/details";
 
+import { Header } from "./component/header";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 
@@ -18,11 +20,13 @@ const Layout = () => {
 
 	return (
 		<div>
+			<Header />
 			<BrowserRouter basename={basename}>
 				<ScrollToTop>
 					<Navbar />
 					<Routes>
 						<Route path="/" element={<Home />} />
+						<Route path="/details/:theid" element={<Details />} />
 						<Route path="/demo" element={<Demo />} />
 						<Route path="/single/:theid" element={<Single />} />
 						<Route path="*" element={<h1>Not found!</h1>} />
