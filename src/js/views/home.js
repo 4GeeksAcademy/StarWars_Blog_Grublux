@@ -47,7 +47,7 @@ export const Home = () => {
 		<>
 			<div className="row d-flex justify-content-center bg-dark text-white">
 				<div className="col-10 text-center p-3 fs-5 ">
-					<p>All of your starwars favorites now streaming on Disney +</p>
+					<p>Gotta catch em all!</p>
 				</div>
 			</div>
 			<div className="row d-flex justify-content-center bg-dark text-white">
