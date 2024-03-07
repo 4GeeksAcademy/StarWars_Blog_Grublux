@@ -24,7 +24,7 @@ export const Home = () => {
 	const [characterArray, setCharacterArray] = useState([]);
 
 	useEffect(() => {
-		fetch('https://swapi.dev/api/people')
+		fetch('https://pokeapi.co/api/v2/pokemon/')
 			.then(response => {
 				if (!response.ok) {
 					throw Error(response.statusText);

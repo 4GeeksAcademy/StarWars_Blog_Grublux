@@ -9,7 +9,7 @@ export const Card = ({ charObj, id }) => {
     return (
         <div className="card myCard mx-2 mt-3"
             onClick={() => navigate(`/details/${id + 1}`)}>
-            <img src="https://cdn.pixabay.com/photo/2016/11/23/14/41/characters-1853286_1280.jpg" className="card-img-top" alt="..." />
+            <img src="https://cdn.pixabay.com/photo/2016/07/19/23/27/pokemon-1529246_1280.jpg" className="card-img-top" alt="..." />
             <div className="card-body pb-5">
                 <p className="myCardText">{charObj.name}</p>
             </div>
