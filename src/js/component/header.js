@@ -9,7 +9,7 @@ export const Header = () => {
 					socials
 				</div>
 				<div className="col text-center">
-					<img src="https://lumiere-a.akamaihd.net/v1/images/sw_logo_stacked_2x-52b4f6d33087_7ef430af.png?region=0,0,586,254" className="headerImg"></img>
+					<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/404px-International_Pok%C3%A9mon_logo.svg.png" className="headerImg"></img>
 				</div>
 				<div className="col text-center">
 					search and login
