@@ -57,9 +57,9 @@ export const Details = () => {
                     <div className="col">
                         <h5>Abilities</h5>
                         {
-                            abilityName ?
-                                <p>{abilityName}</p>
-                                : <p>waiting for films</p>
+                            abilityName.length > 0 ? abilityName.map((elm) => <p>{elm}</p>)
+
+                                : <p>waiting for the abilities</p>
                         }
                     </div>
                     <div className="col"></div>

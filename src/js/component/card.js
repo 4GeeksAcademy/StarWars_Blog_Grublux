@@ -1,6 +1,7 @@
-import React, { Component } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { Component, useContext } from "react";
+import { redirect, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { AppContext } from "../layout";
 
 export const Card = ({ charObj, id }) => {
 
@@ -8,6 +9,9 @@ export const Card = ({ charObj, id }) => {
     const theURL = charObj.url;
 
     const [imgUrl, setImgUrl] = useState("");
+
+    const { likes, setLikes } = useContext(AppContext);
+
 
     // console.log(`Here is the URL ${theURL}`);
 
@@ -33,14 +37,30 @@ export const Card = ({ charObj, id }) => {
     }, []);
 
 
-
-
     return (
-        <div className="card myCard mx-2 mt-3"
-            onClick={() => navigate(`/details/${id + 1}`)}>
-            <img src={imgUrl} className="card-img-top" alt="..." />
-            <div className="card-body pb-5">
-                <p className="myCardText">{charObj.name}</p>
+        <div className="card myCard mx-2 mt-3">
+            <div className="d-flex justify-content-end py-2 p-0">
+                <i className={
+                    likes.includes(charObj.name) ? "fa-solid fa-heart likeButton fs-3 liked"
+                        : "fa-regular fa-heart likeButton fs-3"
+                }
+                    onClick={
+                        likes.includes(charObj.name) ?
+                            () => {
+
+                                setLikes(likes.filter(x => x != charObj.name))
+                            }
+                            :
+                            () => setLikes([...likes, charObj.name])
+
+                    }></i>
+            </div>
+            <div className="pb-1 myCardImg"
+                onClick={() => navigate(`/details/${id + 1}`)}>
+                <img src={imgUrl} className="card-img-top" alt="..." />
+                <div className="card-body pb-5">
+                    <p className="myCardText">{charObj.name}</p>
+                </div>
             </div>
         </div>
 

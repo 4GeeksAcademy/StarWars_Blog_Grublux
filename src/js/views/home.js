@@ -24,7 +24,7 @@ export const Home = () => {
 	const [characterArray, setCharacterArray] = useState([]);
 
 	useEffect(() => {
-		fetch('https://pokeapi.co/api/v2/pokemon/')
+		fetch('https://pokeapi.co/api/v2/pokemon?limit=1320')
 			.then(response => {
 				if (!response.ok) {
 					throw Error(response.statusText);

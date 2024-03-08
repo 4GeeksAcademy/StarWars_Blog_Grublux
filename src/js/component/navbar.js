@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AppContext } from "../layout";
 
 export const Navbar = () => {
+
+	const { likes, setLikes } = useContext(AppContext);
+
 	return (
 		<div className="row d-flex justify-content-center bg-dark border-bottom border-secondary">
 			<div className="col-7 d-flex justify-content-center">
@@ -29,12 +33,22 @@ export const Navbar = () => {
 								</li>
 								<li className="nav-item dropdown">
 									<a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-										Live Battle!
+										Your Favorites! {likes.length}
 									</a>
-									<ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-										<li><a className="dropdown-item" href="#">Action</a></li>
-										<li><a className="dropdown-item" href="#">Another action</a></li>
-										<li><a className="dropdown-item" href="#">Something else here</a></li>
+									<ul className="dropdown-menu myList" aria-labelledby="navbarDropdownMenuLink">
+										{
+											likes.length > 0 ? likes.map(
+												(elm) => <li className="myList">
+													{elm}
+													<i class="fa-regular fa-trash-can trash"
+														onClick={
+															() => setLikes(likes.filter(x => x != elm))}>
+
+													</i>
+												</li>)
+												: <li className="ps-3 myList">Favorite your first Pokemon!</li>
+
+										}
 									</ul>
 								</li>
 							</ul>

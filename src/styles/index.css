@@ -11,11 +11,45 @@
     background-color: rgb(43, 43, 43);
 }
 
-.myCard:hover {
+.myCardImg:hover {
     cursor: pointer;
-    box-shadow: 0 7px 19px rgba(237, 230, 243, 0.4);
+    box-shadow: 0 7px 19px rgba(237, 230, 243, 0.227);
 }
 
 .myCardText {
     background-color: rgb(43, 43, 43);
+}
+
+.likeButton {
+    background-color: transparent;
+    text-size-adjust: 33px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.696);
+}
+
+.likeButton:hover {
+    cursor: pointer;
+    color: rgba(255, 112, 169, 0.699);
+}
+
+.liked {
+    color: rgba(255, 112, 169, 0.693);
+}
+
+.trash {
+    float: right;
+    padding-top: 7px;
+    padding-right: 7px;
+}
+
+.trash:hover {
+    cursor: pointer;
+    color: rgba(255, 112, 169, 0.738);
+}
+
+.myList {
+    text-transform: capitalize;
+    background-color: rgb(43, 43, 43);
+    color:rgb(167, 167, 167);
+    padding-bottom: 11px;
 }
