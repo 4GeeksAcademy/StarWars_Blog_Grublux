@@ -32,6 +32,19 @@
     color: rgba(255, 112, 169, 0.699);
 }
 
+.loginButton {
+    background-color: rgba(76, 75, 75, 0.522);
+    width: 169px;
+    text-size-adjust: 33px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.696);
+}
+
+.loginButton:hover {
+    cursor: pointer;
+    color: rgba(255, 112, 169, 0.699);
+}
+
 .liked {
     color: rgba(255, 112, 169, 0.693);
 }

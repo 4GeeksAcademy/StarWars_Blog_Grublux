@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState, useEffect } from "react";
 import "../../styles/home.css";
 
 import { Card } from "../component/card";
+import { AppContext } from "../layout";
 
 // 1. Fetch characters from API
 // 2. Create a state hook to hold the array with the characters
@@ -21,10 +22,13 @@ import { Card } from "../component/card";
 
 export const Home = () => {
 
+
+	const { likes, setLikes, user, setUser } = useContext(AppContext);
+
 	const [characterArray, setCharacterArray] = useState([]);
 
 	useEffect(() => {
-		fetch('https://pokeapi.co/api/v2/pokemon?limit=1320')
+		fetch('https://pokeapi.co/api/v2/pokemon?limit=28')
 			.then(response => {
 				if (!response.ok) {
 					throw Error(response.statusText);
@@ -47,7 +51,8 @@ export const Home = () => {
 		<>
 			<div className="row d-flex justify-content-center bg-dark text-white">
 				<div className="col-10 text-center p-3 fs-5 ">
-					<p>Gotta catch em all!</p>
+					<p>Welcome Back {user}!</p>
+					<p>You Gotta catch em all!</p>
 				</div>
 			</div>
 			<div className="row d-flex justify-content-center bg-dark text-white">

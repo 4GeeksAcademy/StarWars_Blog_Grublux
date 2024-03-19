@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
+import { Landing } from "./views/landing";
 import { Home } from "./views/home";
 import { Demo } from "./views/demo";
 import { Single } from "./views/single";
@@ -25,18 +26,21 @@ const Layout = () => {
 	const basename = process.env.BASENAME || "";
 
 	const [likes, setLikes] = useState([]);
+	const [user, setUser] = useState("");
 
 	return (
 		<div>
 			<Header />
-			<AppContext.Provider value={{ likes, setLikes }}>
+			<AppContext.Provider value={{ likes, setLikes, user, setUser }}>
 				<BrowserRouter basename={basename}>
 					<ScrollToTop>
 						<Navbar />
 						<Routes>
-							<Route path="/" element={<Home />} />
+							<Route path="/" element={<Landing />} />
+							<Route path="/home" element={<Home />} />
 							<Route path="/details/:theid" element={<Details />} />
 							<Route path="/demo" element={<Demo />} />
+							<Route path="/header" element={<Header />} />
 							<Route path="/single/:theid" element={<Single />} />
 							<Route path="*" element={<h1>Not found!</h1>} />
 						</Routes>
