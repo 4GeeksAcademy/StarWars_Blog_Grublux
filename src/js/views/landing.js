@@ -11,7 +11,7 @@ import { AppContext } from "../layout";
 
 export const Landing = () => {
 
-    const { likes, setLikes, user, setUser, id, setId, userObj, setUserObj } = useContext(AppContext);
+    const { likes, setLikes, user, setUser, } = useContext(AppContext);
 
     // const [userNames, setUserNames] = useState([])
 
@@ -40,8 +40,25 @@ export const Landing = () => {
     // }
 
     const handleEnter = () => {
-        setUser(user);
-        navigate(`/home`)
+        // setUser(user);
+        fetch(`https://supreme-waffle-544xq45674gcv76w-3000.app.github.dev/user/${user}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw Error(response.statusText);
+                }
+                // Read the response as JSON
+                return response.json();
+            })
+            .then(responseAsJson => {
+                setUser(responseAsJson)
+            })
+            .then(
+                navigate('/home')
+            )
+
+            .catch(error => {
+                console.log('Looks like there was a problem: \n', error);
+            });
     }
 
     return (
@@ -52,8 +69,7 @@ export const Landing = () => {
                     <input type="text" id="user_name" placeholder="Username"
                         onChange={e => setUser(e.target.value)} value={user}
                         onKeyDown={(e) => {
-                            e.key === "Enter" ? handleEnter(user) :
-                                value = { user }
+                            if (e.key === "Enter") handleEnter()
                         }
                         }
                     />
@@ -61,8 +77,7 @@ export const Landing = () => {
                 <div className="col-10 text-center p-3 fs-5">
                     <button className="loginButton"
                         onClick={() => {
-                            setUser(user);
-                            navigate(`/home`)
+                            handleEnter()
                         }
                         }
                     >Submit</button>

@@ -23,7 +23,7 @@ import { AppContext } from "../layout";
 export const Home = () => {
 
 
-	const { likes, setLikes, user, setUser, id, setId, userObj, setUserObj } = useContext(AppContext);
+	const { likes, setLikes, user, setUser, } = useContext(AppContext);
 
 	const [characterArray, setCharacterArray] = useState([]);
 
@@ -50,8 +50,8 @@ export const Home = () => {
 		//Runs only on the first render
 	}, []);
 
-	useEffect(() => {
-		fetch('https://supreme-waffle-544xq45674gcv76w-3000.app.github.dev/user')
+	const getFavorites = () => {
+		fetch(`https://supreme-waffle-544xq45674gcv76w-3000.app.github.dev/user/${user.id}/favorites`)
 			.then(response => {
 				if (!response.ok) {
 					throw Error(response.statusText);
@@ -61,48 +61,28 @@ export const Home = () => {
 			})
 			.then(responseAsJson => {
 				// Do stuff with the JSONified response
-				var userObjs = responseAsJson.map((x) => x)
-				setUserObj(userObjs);
-				// console.log(userObjs.map((x) => x.username););
-				console.log(userObjs)
-				names = responseAsJson.map((x) => x)
-				console.log(names)
-				for (let obj of names) {
-					if (obj.username == user) {
-						setId(obj.id)
-					}
-				}
-
-				// console.log(names)
+				setLikes(responseAsJson);
+				console.log("setting likes:")
+				console.log(responseAsJson);
 			})
-			// 	.then(
-			// 		for (i in names) {
-
-			// 		}
-
-			// )
-
-			//still need to work on the below!
-			// .then(() => {
-			// 	for (obj in userObj) {
-			// 		if (userObj.username.includes(user)) {
-			// 			setId(userObj.id)
-			// 		}
-			// 	}
-			// }
-
-
-			// )
 			.catch(error => {
 				console.log('Looks like there was a problem: \n', error);
 			});
-	}, []);
+	}
+
+	useEffect(() => {
+		if (user.id) {
+			console.log("getfaves runs")
+			getFavorites()
+			//Runs when variable "user" is updated. *When inside if statement it prevents running on first pg load*
+		}
+	}, [user]);
 
 	return (
 		<>
 			<div className="row d-flex justify-content-center bg-dark text-white">
 				<div className="col-10 text-center p-3 fs-5 ">
-					<p>Welcome Back {user}!</p>
+					<p>Welcome Back {user.username}!</p>
 					<p>You Gotta catch em all!</p>
 				</div>
 			</div>

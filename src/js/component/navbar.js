@@ -33,16 +33,17 @@ export const Navbar = () => {
 								</li>
 								<li className="nav-item dropdown">
 									<a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-										Your Favorites! {likes.length}
+										Your Favorites! {likes.length && likes.length}
 									</a>
 									<ul className="dropdown-menu myList" aria-labelledby="navbarDropdownMenuLink">
 										{
 											likes.length > 0 ? likes.map(
-												(elm) => <li className="myList">
-													{elm}
-													<i class="fa-regular fa-trash-can trash"
+												(elm, ind) => <li className="myList" key={ind}>
+													{elm.fav_name}
+													<i className="fa-regular fa-trash-can trash"
 														onClick={
-															() => setLikes(likes.filter(x => x != elm))}>
+															() => setLikes(likes.filter(x => x != elm))}
+													>
 
 													</i>
 												</li>)

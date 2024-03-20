@@ -25,15 +25,15 @@ const Layout = () => {
 	// you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
 	const basename = process.env.BASENAME || "";
 
-	const [likes, setLikes] = useState([]);
+	const [likes, setLikes] = useState("");
 	const [user, setUser] = useState("");
-	const [id, setId] = useState(0);
-	const [userObj, setUserObj] = useState([])
+	// const [id, setId] = useState(0);
+	// const [userObj, setUserObj] = useState([])
 
 	return (
 		<div>
 			<Header />
-			<AppContext.Provider value={{ likes, setLikes, user, setUser, id, setId, userObj, setUserObj }}>
+			<AppContext.Provider value={{ likes, setLikes, user, setUser }}>
 				<BrowserRouter basename={basename}>
 					<ScrollToTop>
 						<Navbar />
@@ -41,7 +41,6 @@ const Layout = () => {
 							<Route path="/" element={<Landing />} />
 							<Route path="/home" element={<Home />} />
 							<Route path="/details/:theid" element={<Details />} />
-							<Route path="/demo" element={<Demo />} />
 							<Route path="/header" element={<Header />} />
 							<Route path="/single/:theid" element={<Single />} />
 							<Route path="*" element={<h1>Not found!</h1>} />
