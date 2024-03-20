@@ -11,14 +11,16 @@ import { AppContext } from "../layout";
 
 export const Landing = () => {
 
-    const { likes, setLikes, user, setUser } = useContext(AppContext);
+    const { likes, setLikes, user, setUser, id, setId, userObj, setUserObj } = useContext(AppContext);
 
-    const [characterArray, setCharacterArray] = useState([]);
+    // const [userNames, setUserNames] = useState([])
 
     const navigate = useNavigate();
 
-    // useEffect(() => {
-    //     fetch('https://pokeapi.co/api/v2/pokemon?limit=28')
+
+
+    // const setUserId = () => {
+    //     fetch('https://supreme-waffle-544xq45674gcv76w-3000.app.github.dev/user')
     //         .then(response => {
     //             if (!response.ok) {
     //                 throw Error(response.statusText);
@@ -28,14 +30,19 @@ export const Landing = () => {
     //         })
     //         .then(responseAsJson => {
     //             // Do stuff with the JSONified response
-    //             setCharacterArray(responseAsJson.results);
-    //             console.log(responseAsJson);
+    //             var names = responseAsJson.map((x) => x.username)
+    //             setUserNames(names);
+    //             console.log(names);
     //         })
     //         .catch(error => {
     //             console.log('Looks like there was a problem: \n', error);
     //         });
-    //     //Runs only on the first render
-    // }, []);
+    // }
+
+    const handleEnter = () => {
+        setUser(user);
+        navigate(`/home`)
+    }
 
     return (
         <>
@@ -44,6 +51,11 @@ export const Landing = () => {
                     <h2 className="text-white-50 pb-2">Please Login</h2>
                     <input type="text" id="user_name" placeholder="Username"
                         onChange={e => setUser(e.target.value)} value={user}
+                        onKeyDown={(e) => {
+                            e.key === "Enter" ? handleEnter(user) :
+                                value = { user }
+                        }
+                        }
                     />
                 </div>
                 <div className="col-10 text-center p-3 fs-5">

@@ -27,11 +27,13 @@ const Layout = () => {
 
 	const [likes, setLikes] = useState([]);
 	const [user, setUser] = useState("");
+	const [id, setId] = useState(0);
+	const [userObj, setUserObj] = useState([])
 
 	return (
 		<div>
 			<Header />
-			<AppContext.Provider value={{ likes, setLikes, user, setUser }}>
+			<AppContext.Provider value={{ likes, setLikes, user, setUser, id, setId, userObj, setUserObj }}>
 				<BrowserRouter basename={basename}>
 					<ScrollToTop>
 						<Navbar />

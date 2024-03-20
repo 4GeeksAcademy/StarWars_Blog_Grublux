@@ -23,10 +23,11 @@ import { AppContext } from "../layout";
 export const Home = () => {
 
 
-	const { likes, setLikes, user, setUser } = useContext(AppContext);
+	const { likes, setLikes, user, setUser, id, setId, userObj, setUserObj } = useContext(AppContext);
 
 	const [characterArray, setCharacterArray] = useState([]);
 
+	//Get the pokemon data
 	useEffect(() => {
 		fetch('https://pokeapi.co/api/v2/pokemon?limit=28')
 			.then(response => {
@@ -45,6 +46,38 @@ export const Home = () => {
 				console.log('Looks like there was a problem: \n', error);
 			});
 		//Runs only on the first render
+	}, []);
+
+	useEffect(() => {
+		fetch('https://supreme-waffle-544xq45674gcv76w-3000.app.github.dev/user')
+			.then(response => {
+				if (!response.ok) {
+					throw Error(response.statusText);
+				}
+				// Read the response as JSON
+				return response.json();
+			})
+			.then(responseAsJson => {
+				// Do stuff with the JSONified response
+				var names = responseAsJson.map((x) => x)
+				setUserObj(names);
+				console.log(names);
+			})
+
+			//still need to work on the below!
+			// .then(() => {
+			// 	for (obj in userObj) {
+			// 		if (userObj.username.includes(user)) {
+			// 			setId(userObj.id)
+			// 		}
+			// 	}
+			// }
+
+
+			// )
+			.catch(error => {
+				console.log('Looks like there was a problem: \n', error);
+			});
 	}, []);
 
 	return (
