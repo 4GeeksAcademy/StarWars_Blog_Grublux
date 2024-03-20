@@ -27,6 +27,8 @@ export const Home = () => {
 
 	const [characterArray, setCharacterArray] = useState([]);
 
+	var names = []
+
 	//Get the pokemon data
 	useEffect(() => {
 		fetch('https://pokeapi.co/api/v2/pokemon?limit=28')
@@ -59,10 +61,26 @@ export const Home = () => {
 			})
 			.then(responseAsJson => {
 				// Do stuff with the JSONified response
-				var names = responseAsJson.map((x) => x)
-				setUserObj(names);
-				console.log(names);
+				var userObjs = responseAsJson.map((x) => x)
+				setUserObj(userObjs);
+				// console.log(userObjs.map((x) => x.username););
+				console.log(userObjs)
+				names = responseAsJson.map((x) => x)
+				console.log(names)
+				for (let obj of names) {
+					if (obj.username == user) {
+						setId(obj.id)
+					}
+				}
+
+				// console.log(names)
 			})
+			// 	.then(
+			// 		for (i in names) {
+
+			// 		}
+
+			// )
 
 			//still need to work on the below!
 			// .then(() => {
