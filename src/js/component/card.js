@@ -13,13 +13,13 @@ export const Card = ({ charObj, id }) => {
     const [imgUrl, setImgUrl] = useState("");
 
     const deleteFavorite = async (fav_id) => {
+        console.log("deleteFavorite runs")
         const response = await fetch(`https://supreme-waffle-544xq45674gcv76w-3000.app.github.dev/favorites/${fav_id}/${user.id}`, {
             method: 'DELETE',
         });
         if (response.ok) {
             const data = await response.json();
             setLikes(data.results)
-            // setStateToggle(!stateToggle)
             console.log(data.msg)
             return data;
         } else {
@@ -30,11 +30,11 @@ export const Card = ({ charObj, id }) => {
     };
 
 
-    const { likes, setLikes, user, stateToggle, setStateToggle } = useContext(AppContext);
+    const { likes, setLikes, user } = useContext(AppContext);
 
     const handleHeartClick = () => {
         individual_names.push(charObj.name)
-        console.log(`this is the heartClick runs`)
+        console.log(`HeartClick runs`)
 
 
         fetch(`https://supreme-waffle-544xq45674gcv76w-3000.app.github.dev/favorites/${user.id}`, {
@@ -104,31 +104,31 @@ export const Card = ({ charObj, id }) => {
         //Runs only on the first render
     }, []);
 
-    useEffect(() => {
-        if (user.id) {
-            console.log("rerender")
-            //Get likes after state toggles
-            fetch(`https://supreme-waffle-544xq45674gcv76w-3000.app.github.dev/user/${user.id}/favorites`)
-                .then(response => {
-                    if (!response.ok) {
-                        throw Error(response.statusText);
-                    }
-                    // Read the response as JSON
-                    return response.json();
-                })
-                .then(responseAsJson => {
-                    // Do stuff with the JSONified response
-                    setLikes(responseAsJson);
-                    // console.log("setting likes:")
-                    // console.log(responseAsJson)
-                })
-                .catch(error => {
-                    console.log('Looks like there was a problem: \n', error);
-                })
-                .catch(error => console.error(error));
-        }
+    // useEffect(() => {
+    //     if (user.id) {
+    //         console.log("rerender")
+    //         //Get likes after state toggles
+    //         fetch(`https://supreme-waffle-544xq45674gcv76w-3000.app.github.dev/user/${user.id}/favorites`)
+    //             .then(response => {
+    //                 if (!response.ok) {
+    //                     throw Error(response.statusText);
+    //                 }
+    //                 // Read the response as JSON
+    //                 return response.json();
+    //             })
+    //             .then(responseAsJson => {
+    //                 // Do stuff with the JSONified response
+    //                 setLikes(responseAsJson);
+    //                 // console.log("setting likes:")
+    //                 // console.log(responseAsJson)
+    //             })
+    //             .catch(error => {
+    //                 console.log('Looks like there was a problem: \n', error);
+    //             })
+    //             .catch(error => console.error(error));
+    //     }
 
-    }, [stateToggle]);
+    // }, [stateToggle]);
 
     if (likes) {
         var favMap = likes.map((elm) => elm.fav_name);
@@ -152,9 +152,8 @@ export const Card = ({ charObj, id }) => {
                         : "fa-regular fa-heart likeButton fs-3"
                 }
                     onClick={() => {
-
-                        if (exists) deleteFavorite(exists.id)
-                        else handleHeartClick()
+                        exists ? deleteFavorite(exists.id) :
+                            handleHeartClick()
                     }
                     }></i>
             </div>

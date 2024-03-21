@@ -73,16 +73,6 @@ export const Details = () => {
                 </div>
             </>
 
-            {/* {
-                thisCharacter.length > 1 ?
-                    thisCharacter.map(
-                        (charObj, ind) =>
-                            
-
-                    )
-                    : <p className="text-center pt-3 fs-1"><i className="fa-solid fa-spinner"></i></p>
-            } */}
-
 
         </div>
 

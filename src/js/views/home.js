@@ -82,7 +82,7 @@ export const Home = () => {
 		<>
 			<div className="row d-flex justify-content-center bg-dark text-white">
 				<div className="col-10 text-center p-3 fs-5 ">
-					<p>Welcome Back {user.username}!</p>
+					<p>Welcome {user.username}!</p>
 					<p>You Gotta catch em all!</p>
 				</div>
 			</div>

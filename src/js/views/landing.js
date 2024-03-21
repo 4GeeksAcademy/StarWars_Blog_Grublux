@@ -13,8 +13,6 @@ export const Landing = () => {
 
     const { likes, setLikes, user, setUser, } = useContext(AppContext);
 
-    // const [userNames, setUserNames] = useState([])
-
     const navigate = useNavigate();
 
 
@@ -43,19 +41,23 @@ export const Landing = () => {
         // setUser(user);
         fetch(`https://supreme-waffle-544xq45674gcv76w-3000.app.github.dev/user/${user}`)
             .then(response => {
-                if (!response.ok) {
-                    throw Error(response.statusText);
-                }
+                // if (!response.ok) {
+                //     // throw Error(response.statusText);
+                // }
                 // Read the response as JSON
                 return response.json();
             })
             .then(responseAsJson => {
-                setUser(responseAsJson)
-            })
-            .then(
-                navigate('/home')
-            )
+                if (responseAsJson == "User does not exist") {
+                    navigate('/nulluser');
+                    console.log("User does not exist!")
+                }
+                else {
+                    setUser(responseAsJson)
+                    navigate('/home')
+                }
 
+            })
             .catch(error => {
                 console.log('Looks like there was a problem: \n', error);
             });
@@ -82,23 +84,6 @@ export const Landing = () => {
                     >Login</button>
                 </div>
             </div >
-
-
-            {/* <div className="row d-flex justify-content-center bg-dark text-white">
-                <div className="col-10 text-center p-3 fs-5 ">
-                    <p>Gotta catch em all!</p>
-                </div>
-            </div>
-            <div className="row d-flex justify-content-center bg-dark text-white">
-                {
-                    characterArray.length > 1 ?
-                        characterArray.map(
-                            (charObj, ind) => <Card charObj={charObj} key={ind} id={ind} />
-                        )
-                        : <p className="text-center pt-3 fs-1"><i className="fa-solid fa-spinner"></i></p>
-                }
-
-            </div> */}
         </>
     );
 

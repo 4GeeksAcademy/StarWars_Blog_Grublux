@@ -8,6 +8,8 @@ import { Demo } from "./views/demo";
 import { Single } from "./views/single";
 import injectContext from "./store/appContext";
 import { Details } from "./views/details";
+import { SignUp } from "./views/signup";
+import { NullUser } from "./views/nulluser";
 
 import { Header } from "./component/header";
 import { Navbar } from "./component/navbar";
@@ -28,6 +30,7 @@ const Layout = () => {
 	const [likes, setLikes] = useState("");
 	const [user, setUser] = useState("");
 	const [stateToggle, setStateToggle] = useState(false);
+	const [loggedIn, setLoggedIn] = useState(false);
 	// const [id, setId] = useState(0);
 	// const [userObj, setUserObj] = useState([])
 
@@ -41,6 +44,8 @@ const Layout = () => {
 						<Navbar />
 						<Routes>
 							<Route path="/" element={<Landing />} />
+							<Route path="/nulluser" element={<NullUser />} />
+							<Route path="/signup" element={<SignUp />} />
 							<Route path="/home" element={<Home />} />
 							<Route path="/details/:theid" element={<Details />} />
 							<Route path="/single/:theid" element={<Single />} />
