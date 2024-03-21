@@ -4,7 +4,25 @@ import { AppContext } from "../layout";
 
 export const Navbar = () => {
 
-	const { likes, setLikes } = useContext(AppContext);
+	const { likes, setLikes, stateToggle, setStateToggle, user } = useContext(AppContext);
+
+	const deleteFavorite = async (fav_id) => {
+		const response = await fetch(`https://supreme-waffle-544xq45674gcv76w-3000.app.github.dev/favorites/${fav_id}/${user.id}`, {
+			method: 'DELETE',
+		});
+		if (response.ok) {
+			const data = await response.json();
+			setLikes(data.results)
+			// setStateToggle(!stateToggle)
+			console.log(data.msg)
+			return data;
+		} else {
+			console.log('error: ', response.status, response.statusText);
+			/* Handle the error returned by the HTTP request */
+			return { error: { status: response.status, statusText: response.statusText } };
+		};
+	};
+
 
 	return (
 		<div className="row d-flex justify-content-center bg-dark border-bottom border-secondary">
@@ -42,7 +60,7 @@ export const Navbar = () => {
 													{elm.fav_name}
 													<i className="fa-regular fa-trash-can trash"
 														onClick={
-															() => setLikes(likes.filter(x => x != elm))}
+															() => deleteFavorite(elm.id)}
 													>
 
 													</i>

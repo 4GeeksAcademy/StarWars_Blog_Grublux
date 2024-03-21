@@ -27,21 +27,22 @@ const Layout = () => {
 
 	const [likes, setLikes] = useState("");
 	const [user, setUser] = useState("");
+	const [stateToggle, setStateToggle] = useState(false);
 	// const [id, setId] = useState(0);
 	// const [userObj, setUserObj] = useState([])
 
 	return (
 		<div>
-			<Header />
-			<AppContext.Provider value={{ likes, setLikes, user, setUser }}>
+
+			<AppContext.Provider value={{ likes, setLikes, user, setUser, stateToggle, setStateToggle }}>
 				<BrowserRouter basename={basename}>
 					<ScrollToTop>
+						<Header />
 						<Navbar />
 						<Routes>
 							<Route path="/" element={<Landing />} />
 							<Route path="/home" element={<Home />} />
 							<Route path="/details/:theid" element={<Details />} />
-							<Route path="/header" element={<Header />} />
 							<Route path="/single/:theid" element={<Single />} />
 							<Route path="*" element={<h1>Not found!</h1>} />
 						</Routes>

@@ -1,10 +1,13 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AppContext } from "../layout";
 
 export const Header = () => {
+	const { user, setUser, likes } = useContext(AppContext);
+	// const [loggedIn, setLoggedIn] = useState("")
 
-	// const { likes, setLikes, user, setUser } = useContext(AppContext);
+
+
 	return (
 		<>
 			<div className="row d-flex justify-content-between bg-dark text-white pt-3">
@@ -14,12 +17,12 @@ export const Header = () => {
 				<div className="col text-center">
 					<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/404px-International_Pok%C3%A9mon_logo.svg.png" className="headerImg"></img>
 				</div>
-				<div className="col text-center" style={{ display: "block" }}>
-					search and login
+				{/* <div className="col text-center" style={user.id ? { display: "block" } : { display: "none" }}>
+					Welcome back {user}!
 				</div>
-				<div className="col text-center" style={{ display: "none" }}>
-					Welcome back
-				</div>
+				<div className="col text-center" style={user.id ? { display: "none" } : { display: "block" }}>
+					Login
+				</div> */}
 
 			</div>
 

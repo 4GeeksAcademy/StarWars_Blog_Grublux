@@ -8,16 +8,36 @@ export const Card = ({ charObj, id }) => {
     const navigate = useNavigate();
     const theURL = charObj.url;
 
+    var individual_names = []
+
     const [imgUrl, setImgUrl] = useState("");
 
-    const { likes, setLikes, user } = useContext(AppContext);
+    const deleteFavorite = async (fav_id) => {
+        const response = await fetch(`https://supreme-waffle-544xq45674gcv76w-3000.app.github.dev/favorites/${fav_id}/${user.id}`, {
+            method: 'DELETE',
+        });
+        if (response.ok) {
+            const data = await response.json();
+            setLikes(data.results)
+            // setStateToggle(!stateToggle)
+            console.log(data.msg)
+            return data;
+        } else {
+            console.log('error: ', response.status, response.statusText);
+            /* Handle the error returned by the HTTP request */
+            return { error: { status: response.status, statusText: response.statusText } };
+        };
+    };
+
+
+    const { likes, setLikes, user, stateToggle, setStateToggle } = useContext(AppContext);
 
     const handleHeartClick = () => {
         individual_names.push(charObj.name)
-        console.log(`this is the heart map individual names ${individual_names}`)
+        console.log(`this is the heartClick runs`)
 
 
-        fetch('https://supreme-waffle-544xq45674gcv76w-3000.app.github.dev/favorites', {
+        fetch(`https://supreme-waffle-544xq45674gcv76w-3000.app.github.dev/favorites/${user.id}`, {
             method: 'POST', // or 'PUT'
             body: JSON.stringify(
                 {
@@ -36,30 +56,11 @@ export const Card = ({ charObj, id }) => {
                 if (!res.ok) throw Error(res.statusText);
                 return res.json();
             })
-            .then(response => console.log('Success:', response))
-            .then(
-                fetch(`https://supreme-waffle-544xq45674gcv76w-3000.app.github.dev/user/${user.id}/favorites`)
-                    .then(response => {
-                        if (!response.ok) {
-                            throw Error(response.statusText);
-                        }
-                        // Read the response as JSON
-                        return response.json();
-                    })
-                    .then(responseAsJson => {
-                        // Do stuff with the JSONified response
-                        setLikes(responseAsJson);
-                        console.log("setting likes:")
-                        console.log(responseAsJson)
-                    })
-                    .catch(error => {
-                        console.log('Looks like there was a problem: \n', error);
-                    })
-
+            .then(response => {
+                console.log(response);
+                setLikes(response.results)
+            }
             )
-            .catch(error => console.error(error));
-
-
     }
 
     // const likesMap = () => {
@@ -67,12 +68,12 @@ export const Card = ({ charObj, id }) => {
     //     console.log(`this is the likes map ${entity_names}`)
     // }
     var entityObjArray = []
-    var individual_names = []
+
 
     if (likes) {
         entityObjArray = likes;
         entityObjArray.map((x) => individual_names.push(x.fav_name.toLowerCase()))
-        console.log(`this is the likes map individual names ${individual_names}`)
+        // console.log(`this is the likes map individual names ${individual_names}`)
     }
 
 
@@ -104,11 +105,42 @@ export const Card = ({ charObj, id }) => {
     }, []);
 
     useEffect(() => {
-        console.log("rerender")
-        //Runs only on the first render
-    }, [likes]);
+        if (user.id) {
+            console.log("rerender")
+            //Get likes after state toggles
+            fetch(`https://supreme-waffle-544xq45674gcv76w-3000.app.github.dev/user/${user.id}/favorites`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw Error(response.statusText);
+                    }
+                    // Read the response as JSON
+                    return response.json();
+                })
+                .then(responseAsJson => {
+                    // Do stuff with the JSONified response
+                    setLikes(responseAsJson);
+                    // console.log("setting likes:")
+                    // console.log(responseAsJson)
+                })
+                .catch(error => {
+                    console.log('Looks like there was a problem: \n', error);
+                })
+                .catch(error => console.error(error));
+        }
+
+    }, [stateToggle]);
+
+    if (likes) {
+        var favMap = likes.map((elm) => elm.fav_name);
+    }
+
+    // if (likes) {
+    //     var temp = 
+    // }
 
 
+
+    var exists = likes.find((obj) => obj.fav_name == charObj.name)
 
 
 
@@ -116,11 +148,13 @@ export const Card = ({ charObj, id }) => {
         <div className="card myCard mx-2 mt-3">
             <div className="d-flex justify-content-end py-2 p-0">
                 <i className={
-                    individual_names.includes(charObj.name) ? "fa-solid fa-heart likeButton fs-3 liked"
+                    exists ? "fa-solid fa-heart likeButton fs-3 liked"
                         : "fa-regular fa-heart likeButton fs-3"
                 }
                     onClick={() => {
-                        handleHeartClick()
+
+                        if (exists) deleteFavorite(exists.id)
+                        else handleHeartClick()
                     }
                     }></i>
             </div>

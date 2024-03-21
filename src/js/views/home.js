@@ -62,8 +62,8 @@ export const Home = () => {
 			.then(responseAsJson => {
 				// Do stuff with the JSONified response
 				setLikes(responseAsJson);
-				console.log("setting likes:")
-				console.log(responseAsJson);
+				// console.log("setting likes:")
+				// console.log(responseAsJson);
 			})
 			.catch(error => {
 				console.log('Looks like there was a problem: \n', error);
@@ -88,7 +88,7 @@ export const Home = () => {
 			</div>
 			<div className="row d-flex justify-content-center bg-dark text-white">
 				{
-					characterArray.length > 1 ?
+					characterArray.length > 1 && likes ?
 						characterArray.map(
 							(charObj, ind) => <Card charObj={charObj} key={ind} id={ind} />
 						)

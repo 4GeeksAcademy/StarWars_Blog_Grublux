@@ -65,7 +65,6 @@ export const Landing = () => {
         <>
             <div className="row d-flex justify-content-center bg-dark text-white">
                 <div className="col-10 text-center pt-5 fs-5 ">
-                    <h2 className="text-white-50 pb-2">Please Login</h2>
                     <input type="text" id="user_name" placeholder="Username"
                         onChange={e => setUser(e.target.value)} value={user}
                         onKeyDown={(e) => {
@@ -80,7 +79,7 @@ export const Landing = () => {
                             handleEnter()
                         }
                         }
-                    >Submit</button>
+                    >Login</button>
                 </div>
             </div >
 
