@@ -28,7 +28,19 @@ export const Navbar = () => {
 		<div className="row d-flex justify-content-center bg-dark border-bottom border-secondary">
 			<div className="col-7 d-flex justify-content-center">
 				<nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-					<div>
+					<div style={user.id ? { display: "none" } : { display: "inline" }}>
+						<button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+							<span className="navbar-toggler-icon"></span>
+						</button>
+						<div className="collapse navbar-collapse" id="navbarNavDropdown">
+							<ul className="navbar-nav">
+								<li className="nav-item">
+									<a className="nav-link active" aria-current="page" href="#">Gotta Catch Em All!</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div style={user.id ? { display: "inline" } : { display: "none" }}>
 						<button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
 							<span className="navbar-toggler-icon"></span>
 						</button>

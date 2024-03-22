@@ -24,9 +24,9 @@ export const NullUser = () => {
         <>
             <div className="row d-flex justify-content-center bg-dark text-secondary">
                 <div className="col-10 text-center pt-5 fs-5 ">
-                    <h3 className="noUser">User Does Not Exist</h3>
-                    <p>click below to</p>
-                    <i class="fa-solid fa-circle-down"></i>
+                    <h3 className="noUser pb-1">User Does Not Exist</h3>
+                    <p className="fs-4">click below to</p>
+                    <i className="fa-solid fa-circle-down fs-2"></i>
                 </div>
                 <div className="col-10 text-center p-3 fs-5">
                     <button className="signUpButton"

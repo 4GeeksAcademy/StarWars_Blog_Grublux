@@ -82,8 +82,8 @@ export const Home = () => {
 		<>
 			<div className="row d-flex justify-content-center bg-dark text-white">
 				<div className="col-10 text-center p-3 fs-5 ">
-					<p>Welcome {user.username}!</p>
-					<p>You Gotta catch em all!</p>
+					<p>Welcome {user.username}</p>
+					<p>Like Your Favorite Pokemon!</p>
 				</div>
 			</div>
 			<div className="row d-flex justify-content-center bg-dark text-white">

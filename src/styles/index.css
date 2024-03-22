@@ -55,6 +55,8 @@
     text-size-adjust: 33px;
     text-align: center;
     color: rgba(255, 255, 255, 0.696);
+    box-shadow: 0 7px 19px rgba(237, 230, 243, 0.111);
+    padding-bottom: 7px;
 }
 
 .signUpButton:hover {
@@ -63,20 +65,48 @@
     box-shadow: 0 7px 19px rgba(237, 230, 243, 0.227);
 }
 
-
-
-.topRightLoginButton {
+.socials {
     background-color: rgba(76, 75, 75, 0);
-    width: 111px;
+    width: 43px;
     height: 43px;
     text-size-adjust: 33px;
     text-align: center;
     color: rgba(255, 255, 255, 0.696);
+    padding-top: 13px;
+    border-radius: 21%;
+}
+
+.socials:hover {
+    cursor: pointer;
+    background-color: rgba(76, 75, 75, 0);
+    width: 43px;
+    height: 43px;
+    text-size-adjust: 33px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.696);
+    padding-top: 13px;
+    box-shadow: 0 7px 19px rgba(237, 230, 243, 0.227);
+    border-radius: 21%;
+}
+
+
+.topRightLoginButton {
+    background-color: rgba(76, 75, 75, 0);
+    width: 133px;
+    height: 43px;
+    text-size-adjust: 33px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.696);
+    padding-top: 7px;
+    box-shadow: 0 7px 19px rgba(237, 230, 243, 0.069);
+    border-radius: 11%;
 }
 
 .topRightLoginButton:hover {
     cursor: pointer;
     color: rgba(255, 112, 169, 0.699);
+    box-shadow: 0 7px 19px rgba(237, 230, 243, 0.169);
+    border-radius: 11%;
 }
 
 .liked {

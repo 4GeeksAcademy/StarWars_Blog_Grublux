@@ -21,27 +21,38 @@ export const SignUp = () => {
 
 
     const handleEnter = () => {
-        // Create New User(user);
-        fetch('https://supreme-waffle-544xq45674gcv76w-3000.app.github.dev/user', {
-            method: 'POST', // or 'PUT'
-            body: JSON.stringify(
-                {
-                    "email": newEmail,
-                    "password": password,
-                    "username": newUser
+        if (newUser.length && password.length && newEmail.length > 0) {// Create New User(user);
+            fetch('https://supreme-waffle-544xq45674gcv76w-3000.app.github.dev/user', {
+                method: 'POST', // or 'PUT'
+                body: JSON.stringify(
+                    {
+                        "email": newEmail,
+                        "password": password,
+                        "username": newUser
+                    }
+                ), // data can be a 'string' or an {object} which comes from somewhere further above in our application
+                headers: {
+                    'Content-Type': 'application/json'
                 }
-            ), // data can be a 'string' or an {object} which comes from somewhere further above in our application
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-            .then(res => {
-                if (!res.ok) throw Error(res.statusText);
-                return res.json();
             })
-            .then(response => console.log('Success:', response))
-            .catch(error => console.error(error));
+                .then(res => {
+                    if (!res.ok) throw Error(res.statusText);
+                    return res.json();
+                })
+                .then(responseAsjson => {
+                    console.log('Success:', responseAsjson.msg);
+                    setUser(responseAsjson.new_user)
+                })
+                .then(navigate("/home"))
+
+                .catch(error => console.error(error));
+        }
+
+
+
+
     }
+
 
     return (
         <>

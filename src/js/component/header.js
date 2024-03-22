@@ -13,13 +13,14 @@ export const Header = () => {
 	return (
 		<>
 			<div className="row d-flex justify-content-between bg-dark text-white pt-3">
-				<div className="col text-center">
-					socials
+				<div className="col justify-content-center text-center pt-3">
+					<i className="fa-brands fa-youtube socials mx-1"></i><i className="fa-brands fa-instagram socials mx-1"></i>
+					<i className="fa-brands fa-tiktok socials mx-1"></i><i className="fa-brands fa-x-twitter socials mx-1"></i>
 				</div>
-				<div className="col text-center">
+				<div className="col-6 justify-content-center text-center">
 					<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/404px-International_Pok%C3%A9mon_logo.svg.png" className="headerImg"></img>
 				</div>
-				<div className="col text-center" style={user.id ? { display: "block" } : { display: "none" }}>
+				<div className="col justify-content-center text-center pt-3" style={user.id ? { display: "block" } : { display: "none" }}>
 					<p className="topRightLoginButton"
 						onClick={() => {
 							setUser("");
@@ -28,8 +29,13 @@ export const Header = () => {
 						}}
 					>Log Out</p>
 				</div>
-				<div className="col text-center" style={user.id ? { display: "none" } : { display: "block" }}>
-					<p style={{ width: "111px" }}>Login to catch em all!</p>
+				<div className="col text-center pt-3" style={user.id ? { display: "none" } : { display: "block" }}>
+					<p className="topRightLoginButton"
+						onClick={() => {
+							navigate("/signup");
+							setUser("")
+						}}
+					>Create Account</p>
 				</div>
 
 			</div>

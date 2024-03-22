@@ -39,29 +39,34 @@ export const Landing = () => {
 
     const handleEnter = () => {
         // setUser(user);
-        fetch(`https://supreme-waffle-544xq45674gcv76w-3000.app.github.dev/user/${user}`)
-            .then(response => {
-                // if (!response.ok) {
-                //     // throw Error(response.statusText);
-                // }
-                // Read the response as JSON
-                return response.json();
-            })
-            .then(responseAsJson => {
-                if (responseAsJson == "User does not exist") {
-                    navigate('/nulluser');
-                    console.log("User does not exist!")
-                }
-                else {
-                    setUser(responseAsJson)
-                    navigate('/home')
-                }
+        if (user) {
+            fetch(`https://supreme-waffle-544xq45674gcv76w-3000.app.github.dev/user/${user}`)
+                .then(response => {
+                    // if (!response.ok) {
+                    //     // throw Error(response.statusText);
+                    // }
+                    // Read the response as JSON
+                    return response.json();
+                })
+                .then(responseAsJson => {
+                    if (responseAsJson == "User does not exist") {
+                        navigate('/nulluser');
+                        console.log("User does not exist!")
+                    }
+                    else {
+                        setUser(responseAsJson)
+                        navigate('/home')
+                    }
 
-            })
-            .catch(error => {
-                console.log('Looks like there was a problem: \n', error);
-            });
+                })
+                .catch(error => {
+                    console.log('Looks like there was a problem: \n', error);
+                });
+        }
+
+
     }
+
 
     return (
         <>
