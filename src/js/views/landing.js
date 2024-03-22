@@ -50,6 +50,7 @@ export const Landing = () => {
                 })
                 .then(responseAsJson => {
                     if (responseAsJson == "User does not exist") {
+                        // alert("Invalid User")
                         navigate('/nulluser');
                         console.log("User does not exist!")
                     }
@@ -72,7 +73,7 @@ export const Landing = () => {
         <>
             <div className="row d-flex justify-content-center bg-dark text-white">
                 <div className="col-10 text-center pt-5 fs-5 ">
-                    <input type="text" id="user_name" placeholder="Username"
+                    <input type="text" id="user_name" placeholder="Username" required
                         onChange={e => setUser(e.target.value)} value={user}
                         onKeyDown={(e) => {
                             if (e.key === "Enter") handleEnter()
